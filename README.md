@@ -61,7 +61,7 @@ All of these examples perform identically.
 :warning: Important: the name of the filter must be followed by a colon (:). If you fail to do that an error will be generated and the Jekyll site building process will halt. The error message looks something like this: `Liquid Warning: Liquid syntax error (line 285): Expected end_of_string but found string in "{{ lines | from '2' | until: '4' | xml_escape }}" in /some_directory/some_files.html Liquid Exception: Liquid error (line 285): wrong number of arguments (given 1, expected 2) in /some_directory/some_file.html Error: Liquid error (line 285): wrong number of arguments (given 1, expected 2)`
 ## Usage
 
-Some of the following examples use a multiline string containing 5 lines, called lines, which was created this way:
+Some of the following examples use a multiline string called `lines` that contains 5 lines, which was created this way:
 
 ```
 {% capture lines %}line 1
@@ -72,7 +72,7 @@ line 5
 {% endcapture %}
 ```
 
-Other examples use a multiline string containing the contents of .gitignore, which looks like this:
+Other examples use a multiline string called `gitignore` that contains the contents of a mythical `.gitignore` file, which looks like this:
 ```
 .bsp/
 project/
@@ -148,7 +148,7 @@ mslinn_aws.tar
 ```
 
 ### To the third line of string
-These examples return the lines of the file from the first line until a line with the string "3" is found, including the matched line. The only difference between the examples is the delimiter around the regular expression.
+These examples return the lines of the file from the first line until a line with the string `"3"` is found, including the matched line. The only difference between the examples is the delimiter around the regular expression.
 ```
 {{ lines | to: '3' }}
 {{ lines | to: "3" }}
@@ -180,7 +180,7 @@ target/
 ```
 
 ### Until the third line of string
-These examples return the lines of the file until a line with the string "3" is found, excluding the matched line. The only difference between the examples is the delimiter around the regular expression.
+These examples return the lines of the file until a line with the string `"3"` is found, excluding the matched line. The only difference between the examples is the delimiter around the regular expression.
 ```
 {{ lines | until: '3' }}
 {{ lines | until: "3" }}
@@ -210,7 +210,7 @@ target/
 ```
 
 ### From the string "2" until the string "4"
-These examples return the lines of the file until a line with the string "3" is found, excluding the matched line. The only difference between the examples is the delimiter around the regular expression.
+These examples return the lines of the file until a line with the string `"3"` is found, excluding the matched line. The only difference between the examples is the delimiter around the regular expression.
 ```
 {{ lines | from: '2' | until: '4' }}
 {{ lines | from: "2" | until: "4" }}
