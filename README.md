@@ -258,7 +258,10 @@ Install development dependencies like this:
 $ BUNDLE_WITH="development" bundle install
 ```
 
-To install this gem onto your local machine, run `bundle exec rake install`. 
+To install this gem onto your local machine, run:
+```shell
+$ bundle exec rake install
+```
 
 To release a new version, 
   1. Update the version number in `version.rb`.
