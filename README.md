@@ -10,6 +10,11 @@ Regular expression is used to specify matches; the simplest regular expression i
 
  [Rubular](https://rubular.com/) is a handy online tool to try out regular expressions.
 
+
+### Additional Information
+More information is available on my web site about [my Jekyll plugins](https://www.mslinn.com/blog/2020/10/03/jekyll-plugins.html).
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
