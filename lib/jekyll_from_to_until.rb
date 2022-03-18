@@ -3,6 +3,7 @@
 # @author Copyright 2020 Michael Slinn
 # Jekyll filters for working with multiline strings.
 
+require "jekyll_plugin_logger"
 require_relative "jekyll_from_to_until/version"
 
 module JekyllFromToUntil
@@ -85,3 +86,4 @@ module JekyllFromToUntil
 end
 
 Liquid::Template.register_filter(JekyllFromToUntil)
+Jekyll.info "Loaded jekyll_fron_to_until plugin."
