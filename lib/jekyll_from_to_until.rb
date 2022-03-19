@@ -86,4 +86,4 @@ module JekyllFromToUntil
 end
 
 Liquid::Template.register_filter(JekyllFromToUntil)
-Jekyll.info "Loaded jekyll_fron_to_until plugin."
+Jekyll.info { "Loaded jekyll_fron_to_until plugin." }
