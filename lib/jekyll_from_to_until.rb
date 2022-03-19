@@ -6,9 +6,7 @@
 require "jekyll_plugin_logger"
 require_relative "jekyll_from_to_until/version"
 
-module JekyllFromToUntil
-  class Error < StandardError; end
-
+module Jekyll
   # Filters a multiline string, returning the portion beginning with the line that satisfies a regex.
   # The regex could be enclosed in single quotes, double quotes, or nothing.
   # @param input_strings [String] The multi-line string to scan
@@ -17,11 +15,11 @@ module JekyllFromToUntil
   # @example Returns remaining lines starting with the line containing the word `module`.
   #   {{ flexible_include '/blog/2020/10/03/jekyll-plugins.html' | from 'module' }}
   def from(input_strings, regex)
-    return '' unless check_parameters(input_strings, regex)
+    return "" unless check_parameters(input_strings, regex)
 
     regex = remove_quotations(regex.to_s.strip)
     matched = false
-    result = ''
+    result = ""
     input_strings.each_line do |line|
       matched = true if !matched && line =~ /#{regex}/
       result += line if matched
@@ -34,13 +32,13 @@ module JekyllFromToUntil
   # @example Returns lines up to and including the line containing the word `module`.
   #   {{ flexible_include '/blog/2020/10/03/jekyll-plugins.html' | to 'module' }}
   def to(input_strings, regex)
-    return '' unless check_parameters(input_strings, regex)
+    return "" unless check_parameters(input_strings, regex)
 
     regex = remove_quotations(regex.to_s.strip)
-    result = ''
+    result = ""
     input_strings.each_line do |line|
       result += line
-      return result if line.match?(/#{regex}/)
+      return result if line.match?(%r!#{regex}!)
     end
     result
   end
@@ -50,12 +48,12 @@ module JekyllFromToUntil
   # @example Returns lines up to but not including the line containing the word `module`.
   #   {{ flexible_include '/blog/2020/10/03/jekyll-plugins.html' | until 'module' }}
   def until(input_strings, regex)
-    return '' unless check_parameters(input_strings, regex)
+    return "" unless check_parameters(input_strings, regex)
 
     regex = remove_quotations(regex.to_s.strip)
-    result = ''
+    result = ""
     input_strings.each_line do |line|
-      return result if line.match?(/#{regex}/)
+      return result if line.match?(%r!#{regex}!)
 
       result += line
     end
@@ -66,13 +64,13 @@ module JekyllFromToUntil
 
   def check_parameters(input_strings, regex)
     if input_strings.nil? || input_strings.empty?
-      Jekyll.logger.warn "Warning: Plugin 'from' received no input for regex #{regex}."
+      warn { "Warning: Plugin 'from' received no input for regex #{regex}." }
       return false
     end
 
     regex = regex.to_s
     if regex.nil? || regex.empty?
-      Jekyll.logger.warn "Warning: Plugin 'from' received no regex for input #{input_strings}."
+      warn { "Warning: Plugin 'from' received no regex for input #{input_strings}." }
       return false
     end
     true
@@ -83,7 +81,7 @@ module JekyllFromToUntil
                               (str.start_with?("'") && str.end_with?("'"))
     str
   end
+  info { "Loaded jekyll_fron_to_until plugin." }
 end
 
-Liquid::Template.register_filter(JekyllFromToUntil)
-Jekyll.info { "Loaded jekyll_fron_to_until plugin." }
+Liquid::Template.register_filter(Jekyll)
