@@ -6,6 +6,10 @@
 require "jekyll_plugin_logger"
 require_relative "jekyll_from_to_until/version"
 
+module JekyllPluginFromToUntilName
+  PLUGIN_NAME = "jekyll_from_to_until"
+end
+
 module Jekyll
   # Filters a multiline string, returning the portion beginning with the line that satisfies a regex.
   # The regex could be enclosed in single quotes, double quotes, or nothing.
@@ -64,13 +68,13 @@ module Jekyll
 
   def check_parameters(input_strings, regex)
     if input_strings.nil? || input_strings.empty?
-      warn { "Warning: Plugin 'from' received no input for regex #{regex}." }
+      Jekyll.warn { "Warning: Plugin 'from' received no input for regex #{regex}." }
       return false
     end
 
     regex = regex.to_s
     if regex.nil? || regex.empty?
-      warn { "Warning: Plugin 'from' received no regex for input #{input_strings}." }
+      Jekyll.warn { "Warning: Plugin 'from' received no regex for input #{input_strings}." }
       return false
     end
     true
@@ -81,7 +85,7 @@ module Jekyll
                               (str.start_with?("'") && str.end_with?("'"))
     str
   end
-  info { "Loaded jekyll_fron_to_until plugin." }
+  info { "Loaded #{JekyllPluginFromToUntilName::PLUGIN_NAME} v#{JekyllFromToUntil::VERSION} plugin." }
 end
 
 Liquid::Template.register_filter(Jekyll)
