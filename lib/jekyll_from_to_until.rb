@@ -3,6 +3,7 @@
 # @author Copyright 2020 Michael Slinn
 # Jekyll filters for working with multiline strings.
 
+require "liquid"
 require "jekyll_plugin_logger"
 require_relative "jekyll_from_to_until/version"
 
@@ -85,7 +86,7 @@ module Jekyll
                               (str.start_with?("'") && str.end_with?("'"))
     str
   end
-  info { "Loaded #{JekyllPluginFromToUntilName::PLUGIN_NAME} v#{JekyllFromToUntil::VERSION} plugin." }
 end
 
+PluginMetaLogger.instance.info { "Loaded #{JekyllPluginFromToUntilName::PLUGIN_NAME} v#{JekyllFromToUntil::VERSION} plugin." }
 Liquid::Template.register_filter(Jekyll)
