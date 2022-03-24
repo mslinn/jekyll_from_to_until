@@ -26,7 +26,7 @@ module Jekyll
     matched = false
     result = ""
     input_strings.each_line do |line|
-      matched = true if !matched && line =~ /#{regex}/
+      matched = true if !matched && line =~ %r!#{regex}!
       result += line if matched
     end
     result
