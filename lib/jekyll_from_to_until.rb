@@ -4,14 +4,15 @@
 # Jekyll filters for working with multiline strings.
 
 require "liquid"
-require "jekyll_plugin_logger"
 require_relative "jekyll_from_to_until/version"
 
 module JekyllPluginFromToUntilName
   PLUGIN_NAME = "jekyll_from_to_until"
 end
 
-module Jekyll
+module FromToUntil
+  @logger = PluginMetaLogger.new_logger(self)
+
   # Filters a multiline string, returning the portion beginning with the line that satisfies a regex.
   # The regex could be enclosed in single quotes, double quotes, or nothing.
   # @param input_strings [String] The multi-line string to scan
@@ -69,13 +70,13 @@ module Jekyll
 
   def check_parameters(input_strings, regex)
     if input_strings.nil? || input_strings.empty?
-      Jekyll.warn { "Warning: Plugin 'from' received no input for regex #{regex}." }
+      @logger.warn { "Warning: Plugin 'from' received no input for regex #{regex}." }
       return false
     end
 
     regex = regex.to_s
     if regex.nil? || regex.empty?
-      Jekyll.warn { "Warning: Plugin 'from' received no regex for input #{input_strings}." }
+      @logger.warn { "Warning: Plugin 'from' received no regex for input #{input_strings}." }
       return false
     end
     true
@@ -89,4 +90,4 @@ module Jekyll
 end
 
 PluginMetaLogger.instance.info { "Loaded #{JekyllPluginFromToUntilName::PLUGIN_NAME} v#{JekyllFromToUntil::VERSION} plugin." }
-Liquid::Template.register_filter(Jekyll)
+Liquid::Template.register_filter(FromToUntil)
