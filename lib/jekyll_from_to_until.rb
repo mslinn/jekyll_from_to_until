@@ -3,6 +3,7 @@
 # @author Copyright 2020 Michael Slinn
 # Jekyll filters for working with multiline strings.
 
+require "jekyll_plugin_logger"
 require "liquid"
 require_relative "jekyll_from_to_until/version"
 
