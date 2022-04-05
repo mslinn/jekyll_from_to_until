@@ -12,7 +12,7 @@ module JekyllPluginFromToUntilName
 end
 
 module FromToUntil
-  @logger = PluginMetaLogger.instance.new_logger(self)
+  @logger = PluginMetaLogger.instance.new_logger(self, PluginMetaLogger.instance.config)
 
   # Filters a multiline string, returning the portion beginning with the line that satisfies a regex.
   # The regex could be enclosed in single quotes, double quotes, or nothing.
@@ -90,5 +90,5 @@ module FromToUntil
   end
 end
 
-PluginMetaLogger.instance.info { "Loaded #{JekyllPluginFromToUntilName::PLUGIN_NAME} v#{JekyllFromToUntil::VERSION} plugin." }
+PluginMetaLogger.instance.info { "Loaded #{JekyllPluginFromToUntilName::PLUGIN_NAME} v#{JekyllFromToUntilVersion::VERSION} plugin." }
 Liquid::Template.register_filter(FromToUntil)
