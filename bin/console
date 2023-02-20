@@ -1,10 +1,8 @@
 #!/usr/bin/env ruby
 
-# frozen_string_literal: true
-
-require "bundler/setup"
-require "irb"
-require "jekyll_from_to_until"
-require "liquid"
+require 'bundler/setup'
+require 'irb'
+require 'jekyll_from_to_until'
+require 'liquid'
 
 IRB.start(__FILE__)

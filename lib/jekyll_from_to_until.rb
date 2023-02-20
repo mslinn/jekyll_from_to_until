@@ -1,14 +1,12 @@
-# frozen_string_literal: true
-
 # @author Copyright 2020 Michael Slinn
 # Jekyll filters for working with multiline strings.
 
-require "jekyll_plugin_logger"
-require "liquid"
-require_relative "jekyll_from_to_until/version"
+require 'jekyll_plugin_logger'
+require 'liquid'
+require_relative 'jekyll_from_to_until/version'
 
 module JekyllPluginFromToUntilName
-  PLUGIN_NAME = "jekyll_from_to_until"
+  PLUGIN_NAME = 'jekyll_from_to_until'.freeze
 end
 
 module FromToUntil
@@ -22,11 +20,11 @@ module FromToUntil
   # @example Returns remaining lines starting with the line containing the word `module`.
   #   {{ flexible_include '/blog/2020/10/03/jekyll-plugins.html' | from 'module' }}
   def from(input_strings, regex)
-    return "" unless check_parameters(input_strings, regex)
+    return '' unless check_parameters(input_strings, regex)
 
     regex = remove_quotations(regex.to_s.strip)
     matched = false
-    result = ""
+    result = ''
     input_strings.each_line do |line|
       matched = true if !matched && line =~ %r!#{regex}!
       result += line if matched
@@ -39,10 +37,10 @@ module FromToUntil
   # @example Returns lines up to and including the line containing the word `module`.
   #   {{ flexible_include '/blog/2020/10/03/jekyll-plugins.html' | to 'module' }}
   def to(input_strings, regex)
-    return "" unless check_parameters(input_strings, regex)
+    return '' unless check_parameters(input_strings, regex)
 
     regex = remove_quotations(regex.to_s.strip)
-    result = ""
+    result = ''
     input_strings.each_line do |line|
       result += line
       return result if line.match?(%r!#{regex}!)
@@ -55,10 +53,10 @@ module FromToUntil
   # @example Returns lines up to but not including the line containing the word `module`.
   #   {{ flexible_include '/blog/2020/10/03/jekyll-plugins.html' | until 'module' }}
   def until(input_strings, regex)
-    return "" unless check_parameters(input_strings, regex)
+    return '' unless check_parameters(input_strings, regex)
 
     regex = remove_quotations(regex.to_s.strip)
-    result = ""
+    result = ''
     input_strings.each_line do |line|
       return result if line.match?(%r!#{regex}!)
 

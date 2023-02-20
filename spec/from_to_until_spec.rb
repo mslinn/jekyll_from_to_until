@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'jekyll'
 require 'fileutils'
 require_relative '../lib/jekyll_from_to_until'
