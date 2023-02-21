@@ -1,0 +1,109 @@
+---
+description: Jekyll from/to/until plugin demo
+layout: default
+title: Welcome
+---
+<p>
+  The examples on this web page use a variable called <code>lines</code>,
+  which is a multiline string.
+  <code>lines</code> is defined as:
+</p>
+<pre>{% raw %}{% capture lines %}line 1
+line 2
+line 3
+line 4
+line 5
+{% endcapture %}{% endraw %}</pre>
+{% capture lines %}line 1
+line 2
+line 3
+line 4
+line 5
+{% endcapture %}
+
+
+<h2 id="from">From</h2>
+<p>
+  This example returns the lines from the first line containing the string <code>3</code>
+  is found, until the last line in the multiline string.
+</p>
+<pre>{% raw %}{{ lines | from: 3 }}{% endraw %}</pre>
+<p>Renders as:</p>
+<pre>{{ lines | from: 3 }}</pre>
+
+
+<h2 id="to">To (Inclusive Match)</h2>
+<p>
+  This example returns the lines of the file from the first line until a line with the string <code>3</code>
+  is found, <b>including</b> the matched line in the multiline string.
+</p>
+<pre>{% raw %}{{ lines | to: 3 }}{% endraw %}</pre>
+<p>Renders as:</p>
+<pre>{{ lines | to: 3 }}</pre>
+
+
+<h2 id="until">Until (Exclusive Match)</h2>
+<p>
+  This example returns the lines of the file from the first line until a line with the string <code>3</code>
+  is found, <b>not including</b> the matched line in the multiline string.
+</p>
+<pre>{% raw %}{{ lines | until: 3 }}{% endraw %}</pre>
+<p>Renders as:</p>
+<pre>{{ lines | until: 3 }}</pre>
+
+
+<h2 id="id2_4in">Between the lines containing "2" and "4", Inclusive</h2>
+<p>
+  This example returns the lines that start from the first line containing <code>2</code>
+  until a line with the string <code>4</code>
+  is found, <b>including</b> the last matched line in the multiline string.
+</p>
+
+<pre>{% raw %}{{ lines | from: 2 | to: 4 }}{% endraw %}</pre>
+<p>Renders as:</p>
+<pre>{{ lines | from: 2 | to: 4 }}</pre>
+
+
+<h2 id="id2_4ex">Between the lines containing "2" and "4", Exclusive</h2>
+<p>
+  This example returns the lines that start from the first line containing <code>2</code>
+  until a line with the string <code>4</code>
+  is found, <b>not including</b> the last matched line in the multiline string.
+</p>
+
+<pre>{% raw %}{{ lines | from: 2 | until: 4 }}{% endraw %}</pre>
+<p>Renders as:</p>
+<pre>{{ lines | from: 2 | until: 4 }}</pre>
+
+
+<h2 id="regex">Regular Expressions</h2>
+<p>
+  The <code>from</code>, <code>to</code> and <code>until</code> filters can accept regular expressions.
+</p>
+<p>
+  This regular expression matches lines that have either the string <code>line 2</code> or
+  <code>line 3</code> at the beginning of the line.
+  This example returns the contents of the multiline string from the matched line until the end of the string.
+</p>
+<pre>{% raw %}{{ lines | from: '^line (2|3)' }}{% endraw %}</pre>
+<p>Renders as:</p>
+<pre>{{ lines | from: '^line (2|3)' }}</pre>
+
+<p style="margin-top: 0.75in">
+  The first regular expression in this example matches lines that have either the string <code>line 2</code> or
+  <code>line 3</code> at the beginning of the line.
+  The second regular expression in this example matches lines that have either the string <code>line 4</code> or
+  <code>line 5</code> at the beginning of the line.
+  This example returns the contents of the multiline string from the first matched line until the
+  second matched line, or end of the multiline string.
+</p>
+<pre>{% raw %}{{ lines | from: '^line (2|3)'  | to: '^line (4|5)' }}{% endraw %}</pre>
+<p>Renders as:</p>
+<pre>{{ lines | from: '^line (2|3)'  | to: '^line (4|5)' }}</pre>
+
+<p style="margin-top: 0.75in">
+  This example is similar to the preceding example, except that the last matching line is not returned.
+</p>
+<pre>{% raw %}{{ lines | from: '(2|3)'  | until: '(4|5)' }}{% endraw %}</pre>
+<p>Renders as:</p>
+<pre>{{ lines | from: '(2|3)'  | until: '(4|5)' }}</pre>

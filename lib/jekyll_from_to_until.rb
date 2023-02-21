@@ -10,7 +10,9 @@ module JekyllPluginFromToUntilName
 end
 
 module FromToUntil
-  @logger = PluginMetaLogger.instance.new_logger(self, PluginMetaLogger.instance.config)
+  def initialize(_)
+    @logger = PluginMetaLogger.instance.new_logger("FromToUntil", PluginMetaLogger.instance.config)
+  end
 
   # Filters a multiline string, returning the portion beginning with the line that satisfies a regex.
   # The regex could be enclosed in single quotes, double quotes, or nothing.

@@ -12,3 +12,8 @@ spec/status_persistence.txt
 .jekyll-cache/
 .jekyll-metadata
 _site/
+RUNNING_PID
+mslinn_jekyll_plugins.zip
+cloud9.tar
+cloud9.zip
+mslinn_aws.tar

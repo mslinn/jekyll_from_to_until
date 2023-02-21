@@ -23,13 +23,9 @@ Add this line to your application's Gemfile:
 gem 'jekyll_from_to_until'
 ```
 
-And then execute:
+And then install in the usual fashion:
 
     $ bundle install
-
-Or install it yourself as:
-
-    $ gem install jekyll_from_to_until
 
 
 ## Syntax
@@ -92,7 +88,6 @@ target/
 .idea
 .jekyll-cache/
 .jekyll-metadata
-.makeAwsBucketAndDistribution.log
 .sass-cache/
 .yardoc/
 __pycache__/
@@ -237,7 +232,9 @@ mslinn_aws.tar
 ```
 
 ### More Complex Regular Expressions
-The from, to and until filters can all accept more complex regular expressions. This regular expression matches lines that have either the string sun or cloud at the beginning of the line.
+The `from`, `to` and `until` filters can all accept regular expressions.
+The regular expression matches lines that have either the string `sun` or `cloud`
+at the beginning of the line.
 ```
 {{ gitignore | from: '^(cloud|sun)' }}
 ```
@@ -259,11 +256,6 @@ You can also run `bin/console` for an interactive prompt that will allow you to 
 ### Build and Install Locally
 To build and install this gem onto your local machine, run:
 ```shell
-$ rake install:local
-```
-
-The following also does the same thing:
-```shell
 $ bundle exec rake install
 ```
 
@@ -282,6 +274,40 @@ jekyll_from_to_until (1.0.0)
 
     Generates Jekyll logger with colored output.
 ```
+
+## Demo Website
+A test/demo website is provided in the `demo` directory.
+You can run it under a debugger, or let it run free.
+
+The `demo/_bin/debug` script can set various parameters for the demo.
+View the help information with the `-h` option:
+```shell
+$ demo/_bin/debug -h
+
+debug - Run the demo Jekyll website.
+
+By default the demo Jekyll website runs without restriction under ruby-debug-ide and debase.
+View it at http://localhost:4444
+
+Options:
+  -h  Show this error message
+
+  -r  Run freely, without a debugger
+```
+
+
+### Debugging the Demo
+To run under a debugger, for example Visual Studio Code:
+ 1. Set breakpoints.
+
+ 2. Initiate a debug session from the command line:
+    ```shell
+    $ demo/bin/debug
+    ```
+
+  3. Once the `Fast Debugger` signon appears, launch the Visual Studio Code launch configuration called `Attach rdebug-ide`.
+
+  4. View the generated website at [`http://localhost:4444`](http://localhost:4444).
 
 
 ### Build and Push to RubyGems
