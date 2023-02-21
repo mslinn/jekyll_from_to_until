@@ -23,14 +23,14 @@ Gemspec/DeprecatedAttributeAssignment:
 Gemspec/RequireMFA:
   Enabled: false
 
-Layout/InitialIndentation:
-  Exclude:
-    - README.md
-
 Layout/HashAlignment:
   EnforcedColonStyle: table
   Exclude:
     - jekyll_from_to_until.gemspec
+
+Layout/InitialIndentation:
+  Exclude:
+    - README.md
 
 Layout/LineLength:
   Max: 150
@@ -53,6 +53,7 @@ Metrics/BlockLength:
 Metrics/ClassLength:
   Exclude:
     - spec/**/*
+  Max: 40
 
 Metrics/CyclomaticComplexity:
   Max: 20
