@@ -1,3 +1,6 @@
+## 1.0.3 / 2023-02-25
+  * Fixed `undefined method 'registers' for nil:NilClass (NoMethodError)`
+
 ## 1.0.2 / 2023-02-21
   * Improved how the logger was used.
   * Added `demo` website

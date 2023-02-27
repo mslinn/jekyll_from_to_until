@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.name = 'jekyll_from_to_until'
   spec.post_install_message = <<~END_MESSAGE
 
-    Thanks for installing #{spec.name}!
+    Thanks for installing #{spec.name} v#{JekyllFromToUntilVersion::VERSION}!
 
   END_MESSAGE
   spec.require_paths = ['lib']
