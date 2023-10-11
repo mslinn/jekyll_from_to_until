@@ -2,7 +2,7 @@ require 'jekyll'
 require 'fileutils'
 require_relative '../lib/jekyll_from_to_until'
 
-RSpec.describe(JekyllFromToUntil) do
+RSpec.describe(FromToUntil) do
   include described_class
 
   let(:lines) do

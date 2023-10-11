@@ -1,17 +1,17 @@
-`jekyll_from_to_until`
-[![Gem Version](https://badge.fury.io/rb/jekyll_from_to_until.svg)](https://badge.fury.io/rb/jekyll_from_to_until)
-===========
+# `jekyll_from_to_until` [![Gem Version](https://badge.fury.io/rb/jekyll_from_to_until.svg)](https://badge.fury.io/rb/jekyll_from_to_until)
 
 This Jekyll plugin provides 3 filters that return portions of a multiline string.
 Regular expression is used to specify matches; the simplest regular expression is a string.
- * `from` — returns the portion beginning with the line that satisfies a regular expression to the end of the multiline string.
- * `to` — returns the portion from the first line to the line that satisfies a regular expression, including the matched line.
- * `until` — returns the portion from the first line to the line that satisfies a regular expression, excluding the matched line.
+
+* `from` — returns the portion beginning with the line that satisfies a regular expression to the end of the multiline string.
+* `to` — returns the portion from the first line to the line that satisfies a regular expression, including the matched line.
+* `until` — returns the portion from the first line to the line that satisfies a regular expression, excluding the matched line.
 
  [Rubular](https://rubular.com/) is a handy online tool to try out regular expressions.
 
 
-### Additional Information
+## Additional Information
+
 More information is available on my web site about [my Jekyll plugins](https://www.mslinn.com/blog/2020/10/03/jekyll-plugins.html).
 
 
@@ -25,41 +25,54 @@ gem 'jekyll_from_to_until'
 
 And then install in the usual fashion:
 
-    $ bundle install
+```shell
+$ bundle install
+```
 
 
 ## Syntax
+
 The regular expression may be enclosed in single quotes, double quotes, or nothing.
 
+
 ### `from`
+
 All of these examples perform identically.
-```
+
+```html
 {{ sourceOfLines | from: 'regex' }}
 {{ sourceOfLines | from: "regex" }}
 {{ sourceOfLines | from: regex }}
 ```
 
 ### `to`
+
 All of these examples perform identically.
-```
+
+```html
 {{ sourceOfLines | to: 'regex' }}
 {{ sourceOfLines | to: "regex" }}
 {{ sourceOfLines | to: regex }}
 ```
 
 ### `until`
+
 All of these examples perform identically.
-```
+
+```text
 {{ sourceOfLines | until: 'regex' }}
 {{ sourceOfLines | until: "regex" }}
 {{ sourceOfLines | until: regex }}
 ```
+
 :warning: Important: the name of the filter must be followed by a colon (:). If you fail to do that an error will be generated and the Jekyll site building process will halt. The error message looks something like this: `Liquid Warning: Liquid syntax error (line 285): Expected end_of_string but found string in "{{ lines | from '2' | until: '4' | xml_escape }}" in /some_directory/some_files.html Liquid Exception: Liquid error (line 285): wrong number of arguments (given 1, expected 2) in /some_directory/some_file.html Error: Liquid error (line 285): wrong number of arguments (given 1, expected 2)`
+
+
 ## Usage
 
 Some of the following examples use a multiline string called `lines` that contains 5 lines, which was created this way:
 
-```
+```html
 {% capture lines %}line 1
 line 2
 line 3
@@ -69,7 +82,8 @@ line 5
 ```
 
 Other examples use a multiline string called `gitignore` that contains the contents of a mythical `.gitignore` file, which looks like this:
-```
+
+```text
 .bsp/
 project/
 target/
@@ -114,27 +128,36 @@ cloud9.zip
 mslinn_aws.tar
 ```
 
+
 ### From the third line of string
+
 These examples return the lines of the file from the beginning of the until a line with the string "3" is found, including the matched line. The only difference between the examples is the delimiter around the regular expression.
-```
+
+```html
 {{ lines | from: '3' }}
 {{ lines | from: "3" }}
 {{ lines | from: 3 }}
 ```
+
 The above all generate:
-```
+
+```plain
 line 3
 line 4
 line 5
 ```
 
+
 ### From Line In a File Containing 'PID'
-```
+
+```html
 {% capture gitignore %}{% flexible_include '.gitignore' %}{% endcapture %}
 {{ gitignore | from: 'PID' | xml_escape }}
 ```
+
 The above generates:
-```
+
+```text
 RUNNING_PID
 mslinn_jekyll_plugins.zip
 cloud9.tar
@@ -142,26 +165,35 @@ cloud9.zip
 mslinn_aws.tar
 ```
 
+
 ### To the third line of string
+
 These examples return the lines of the file from the first line until a line with the string `"3"` is found, including the matched line. The only difference between the examples is the delimiter around the regular expression.
-```
+
+```html
 {{ lines | to: '3' }}
 {{ lines | to: "3" }}
 {{ lines | to: 3 }}
 ```
+
 The above all generate:
-```
+
+```text
 line 1
 line 2
 line 3
 ```
 
+
 ### To Line In a File Containing 'idea'
-```
+
+```html
 {{ gitignore | to: 'idea' }}
 ```
+
 The above generates:
-```
+
+```text
 .bsp/
 project/
 target/
@@ -174,25 +206,34 @@ target/
 .idea*
 ```
 
+
 ### Until the third line of string
+
 These examples return the lines of the file until a line with the string `"3"` is found, excluding the matched line. The only difference between the examples is the delimiter around the regular expression.
-```
+
+```html
 {{ lines | until: '3' }}
 {{ lines | until: "3" }}
 {{ lines | until: 3 }}
 ```
+
 The above all generate:
-```
+
+```text
 line 1
 line 2
 ```
 
+
 ### Until Line In a File Containing 'idea'
-```
+
+```html
 {{ gitignore | until: 'idea' }}
 ```
+
 The above generates:
-```
+
+```text
 .bsp/
 project/
 target/
@@ -204,26 +245,36 @@ target/
 *.log
 ```
 
+
 ### From the string "2" until the string "4"
+
 These examples return the lines of the file until a line with the string `"3"` is found, excluding the matched line. The only difference between the examples is the delimiter around the regular expression.
-```
+
+```html
 {{ lines | from: '2' | until: '4' }}
 {{ lines | from: "2" | until: "4" }}
 {{ lines | from: 2 | until: 4 }}
 ```
+
 The above all generate:
-```
+
+```text
 line 2
 line 3
 ```
 
+
 ### From Line In a File Containing 'idea' Until no match
+
 The `.gitignore` file does not contain the string `xx`. If we attempt to match against that string the remainder of the file is returned for the to and until filter, and the empty string is returned for the from filter.
-```
+
+```html
 {{ gitignore | from: 'PID' | until: 'xx' }}
 ```
+
 The above generates:
-```
+
+```text
 RUNNING_PID
 mslinn_jekyll_plugins.zip
 cloud9.tar
@@ -231,15 +282,20 @@ cloud9.zip
 mslinn_aws.tar
 ```
 
+
 ### More Complex Regular Expressions
+
 The `from`, `to` and `until` filters can all accept regular expressions.
 The regular expression matches lines that have either the string `sun` or `cloud`
 at the beginning of the line.
-```
+
+```html
 {{ gitignore | from: '^(cloud|sun)' }}
 ```
+
 The above generates:
-```
+
+```text
 cloud9.tar
 cloud9.zip
 mslinn_aws.tar
@@ -254,12 +310,15 @@ You can also run `bin/console` for an interactive prompt that will allow you to 
 
 
 ### Build and Install Locally
+
 To build and install this gem onto your local machine, run:
+
 ```shell
 $ bundle exec rake install
 ```
 
 Examine the newly built gem:
+
 ```shell
 $ gem info jekyll_from_to_until
 
@@ -275,12 +334,15 @@ jekyll_from_to_until (1.0.0)
     Generates Jekyll logger with colored output.
 ```
 
+
 ## Demo Website
+
 A test/demo website is provided in the `demo` directory.
 You can run it under a debugger, or let it run free.
 
 The `demo/_bin/debug` script can set various parameters for the demo.
 View the help information with the `-h` option:
+
 ```shell
 $ demo/_bin/debug -h
 
@@ -297,29 +359,34 @@ Options:
 
 
 ### Debugging the Demo
+
 To run under a debugger, for example Visual Studio Code:
- 1. Set breakpoints.
 
- 2. Initiate a debug session from the command line:
-    ```shell
-    $ demo/bin/debug
-    ```
+1. Set breakpoints.
+2. Initiate a debug session from the command line:
 
-  3. Once the `Fast Debugger` signon appears, launch the Visual Studio Code launch configuration called `Attach rdebug-ide`.
+   ```shell
+   $ demo/bin/debug
+   ```
 
-  4. View the generated website at [`http://localhost:4444`](http://localhost:4444).
+3. Once the `Fast Debugger` signon appears, launch the Visual Studio Code launch configuration called `Attach rdebug-ide`.
+4. View the generated website at [`http://localhost:4444`](http://localhost:4444).
 
 
 ### Build and Push to RubyGems
+
 To release a new version,
-  1. Update the version number in `version.rb`.
-  2. Commit all changes to git; if you don't the next step might fail with an unexplainable error message.
-  3. Run the following:
-     ```shell
-     $ bundle exec rake release
-     ```
-     The above creates a git tag for the version, commits the created tag,
-     and pushes the new `.gem` file to [RubyGems.org](https://rubygems.org).
+
+1. Update the version number in `version.rb`.
+2. Commit all changes to git; if you don't the next step might fail with an unexplainable error message.
+3. Run the following:
+
+   ```shell
+   $ bundle exec rake release
+   ```
+
+   The above creates a git tag for the version, commits the created tag,
+   and pushes the new `.gem` file to [RubyGems.org](https://rubygems.org).
 
 
 ## Contributing
