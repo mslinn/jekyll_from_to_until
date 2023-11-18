@@ -25,6 +25,14 @@
       "type": "rdbg",
     },
     {
+      "cwd": "${workspaceRoot}/demo",
+      "debugPort": "0",
+      "name": "Debug demo.rb",
+      "request": "launch",
+      "script": "demo.rb",
+      "type": "rdbg",
+    },
+    {
       "debugPort": "0",
       "name": "Attach rdbg",
       "type": "rdbg",

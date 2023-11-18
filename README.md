@@ -1,7 +1,9 @@
 # `jekyll_from_to_until` [![Gem Version](https://badge.fury.io/rb/jekyll_from_to_until.svg)](https://badge.fury.io/rb/jekyll_from_to_until)
 
-This Jekyll plugin provides 3 filters that return portions of a multiline string.
-Regular expression is used to specify matches; the simplest regular expression is a string.
+This module provides 3 filters that return portions of a multiline string.
+It can be used as a Jekyll plugin, or it can be called from any Ruby program.
+
+Matches are specified by regular expressions; the simplest regular expression is a string.
 
 * `from` — returns the portion beginning with the line that satisfies a regular expression to the end of the multiline string.
 * `to` — returns the portion from the first line to the line that satisfies a regular expression, including the matched line.
@@ -12,25 +14,58 @@ Regular expression is used to specify matches; the simplest regular expression i
 
 ## Additional Information
 
-More information is available on my web site about [my Jekyll plugins](https://www.mslinn.com/blog/2020/10/03/jekyll-plugins.html).
+More information is available on the [`jekyll_from_to_until` gem web page](https://www.mslinn.com/jekyll_plugins/jekyll_from_to_until.html).
 
 
 ## Installation
 
-Add this line to your application's Gemfile:
+### As a Jekyll Filter Plugin
+
+If you want to use this Ruby gem in a Jekyll application,
+add the following line to your application's Gemfile:
 
 ```ruby
-gem 'jekyll_from_to_until'
+group :jekyll_plugins do
+  gem 'jekyll_from_to_until'
+end
 ```
 
 And then install in the usual fashion:
 
 ```shell
-$ bundle install
+$ bundle
+```
+
+### As a Dependency Of a Gem
+
+Add the following line to your application's `.gemspec`:
+
+```ruby
+spec.add_dependency 'jekyll_from_to_until'
+```
+
+And then install the dependencies in the usual fashion:
+
+```shell
+$ bundle
+```
+
+### As a Ruby Module In a Ruby Program
+
+Add the following line to your application's `Gemfile`:
+
+```ruby
+gem 'jekyll_from_to_until'
+```
+
+And then install the dependencies in the usual fashion:
+
+```shell
+$ bundle
 ```
 
 
-## Syntax
+## Jekyll Syntax
 
 The regular expression may be enclosed in single quotes, double quotes, or nothing.
 
@@ -65,10 +100,10 @@ All of these examples perform identically.
 {{ sourceOfLines | until: regex }}
 ```
 
-:warning: Important: the name of the filter must be followed by a colon (:). If you fail to do that an error will be generated and the Jekyll site building process will halt. The error message looks something like this: `Liquid Warning: Liquid syntax error (line 285): Expected end_of_string but found string in "{{ lines | from '2' | until: '4' | xml_escape }}" in /some_directory/some_files.html Liquid Exception: Liquid error (line 285): wrong number of arguments (given 1, expected 2) in /some_directory/some_file.html Error: Liquid error (line 285): wrong number of arguments (given 1, expected 2)`
+:warning: Important: the name of the filter must be followed by a colon (&colon;). If you fail to do that an error will be generated and the Jekyll site building process will halt. The error message looks something like this: `Liquid Warning: Liquid syntax error (line 285): Expected end_of_string but found string in "{{ lines | from '2' | until: '4' | xml_escape }}" in /some_directory/some_files.html Liquid Exception: Liquid error (line 285): wrong number of arguments (given 1, expected 2) in /some_directory/some_file.html Error: Liquid error (line 285): wrong number of arguments (given 1, expected 2)`
 
 
-## Usage
+## Jekyll Usage
 
 Some of the following examples use a multiline string called `lines` that contains 5 lines, which was created this way:
 
@@ -81,7 +116,8 @@ line 5
 {% endcapture %}
 ```
 
-Other examples use a multiline string called `gitignore` that contains the contents of a mythical `.gitignore` file, which looks like this:
+Other examples use a multiline string called `gitignore` that contains the contents of a mythical `.gitignore` file,
+which looks like this:
 
 ```text
 .bsp/

@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.0.4 / 2023-11-18
+
+* Now callable from any Ruby program
+
+
 ## 1.0.3 / 2023-02-25
 
 * Fixed `undefined method 'registers' for nil:NilClass (NoMethodError)`

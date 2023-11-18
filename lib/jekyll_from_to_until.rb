@@ -1,16 +1,22 @@
-# @author Copyright 2020 Michael Slinn
 # Jekyll filters for working with multiline strings.
 
-require 'jekyll_plugin_logger'
-require 'liquid'
 require_relative 'jekyll_from_to_until/version'
 
 module JekyllPluginFromToUntilName
   PLUGIN_NAME = 'jekyll_from_to_until'.freeze
 end
 
+CALLED_FROM_JEKYLL = !$LOADED_FEATURES.grep(/.*liquid.rb/).empty?
+
 module FromToUntil
-  @logger = PluginMetaLogger.instance.new_logger("FromToUntil", PluginMetaLogger.instance.config)
+  @logger = if CALLED_FROM_JEKYLL
+              require 'liquid'
+              require 'jekyll_plugin_logger'
+              PluginMetaLogger.instance.new_logger "FromToUntil", PluginMetaLogger.instance.config
+            else
+              require 'logger'
+              Logger.new $stdout
+            end
 
   # Filters a multiline string, returning the portion beginning with the line that satisfies a regex.
   # The regex could be enclosed in single quotes, double quotes, or nothing.
@@ -65,7 +71,7 @@ module FromToUntil
     result
   end
 
-  private
+  private if CALLED_FROM_JEKYLL
 
   def check_parameters(input_strings, regex)
     if input_strings.nil? || input_strings.empty?
@@ -86,7 +92,11 @@ module FromToUntil
                               (str.start_with?("'") && str.end_with?("'"))
     str
   end
+
+  module_function :from, :to, :until, :check_parameters, :remove_quotations unless CALLED_FROM_JEKYLL
 end
 
-PluginMetaLogger.instance.info { "Loaded #{JekyllPluginFromToUntilName::PLUGIN_NAME} v#{JekyllFromToUntilVersion::VERSION} plugin." }
-Liquid::Template.register_filter(FromToUntil)
+if CALLED_FROM_JEKYLL
+  PluginMetaLogger.instance.info { "Loaded #{JekyllPluginFromToUntilName::PLUGIN_NAME} v#{JekyllFromToUntilVersion::VERSION} plugin." }
+  Liquid::Template.register_filter(FromToUntil)
+end
