@@ -4,6 +4,7 @@
 /coverage/
 /doc/
 /exe/
+/binstub/
 /pkg/
 /spec/reports/
 /tmp/
