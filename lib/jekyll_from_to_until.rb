@@ -93,7 +93,7 @@ module FromToUntil
     str
   end
 
-  module_function :from, :to, :until, :check_parameters, :remove_quotations unless CALLED_FROM_JEKYLL
+  module_function :from, :to, :until, :check_parameters, :remove_quotations
 end
 
 if CALLED_FROM_JEKYLL
