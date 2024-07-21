@@ -22,7 +22,7 @@ More information is available on the [`jekyll_from_to_until` gem web page](https
 ### As a Jekyll Filter Plugin
 
 If you want to use this Ruby gem in a Jekyll application,
-add the following line to your application's Gemfile:
+add the following line to your application's `Gemfile`:
 
 ```ruby
 group :jekyll_plugins do
