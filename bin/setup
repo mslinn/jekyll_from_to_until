@@ -26,6 +26,7 @@ bundle
 
 if [ -d demo/ ]; then
   cd demo || exit
+  rm -f Gemfile.lock
   bundle
   cd ..
 fi
