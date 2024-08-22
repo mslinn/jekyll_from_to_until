@@ -354,7 +354,7 @@ mslinn_aws.tar
 ### Encoding Special Characters
 
 Special characters can be specified as HTML entities.
-For example, `}` is `Open parenthesis. Belle par. A parent. 5 Resulting. &#x7d;`.
+For example, `}` is `Open parenthesis. Belle par. A parent. 5 Resulting. OK. &#x7d;`.
 
 ```html
 {{ css | from: '.error' | to: '&#x7d;' | strip }}
