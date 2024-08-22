@@ -4,13 +4,33 @@ layout: default
 title: Special Characters
 ---
 <p>
-  This was not working on
-  {% href label='<code>mslinn.com/jekyll_plugins/jekyll_pre.html#comprehensive_example</code>'
+  I had a problem with a filter that needed a special character.
+  The page was
+  {% href label='<code>mslinn.com/<wbr>jekyll_plugins/<wbr>jekyll_pre.html<wbr>#comprehensive_example</code>'
             url='https://mslinn.com/jekyll_plugins/jekyll_pre.html#comprehensive_example' %}.
+</p>
+<p>
   The solution I chose was to allow special characters to be specified as HTML entities.
-  For example, <code>'}'</code> is <code>'&amp;#x7d;'</code>.
+  For example, the closing squiggly bracket, <code>}</code>,
+  can be encoded as <code>&amp;#x7d;</code> or as <code>&amp;rcub;</code>.
 </p>
 {% capture css %}{% flexible_include '$msp/_sass/jekyll_pre.scss' %}{% endcapture %}
-{% pre copyButton dedent label="CSS Fragment" %}
+
+<h2>Using an HTML Entity</h2>
+{% pre dedent label="Jekyll Filter Invocation" %}
+{% raw %}{{ css | from: '.error' | to: '&amp;rcub;' | strip }}{% endraw %}
+{% endpre %}
+
+{% pre dedent label="Resulting CSS Fragment" %}
+{{ css | from: '.error' | to: '&rcub;' | strip }}
+{% endpre %}
+
+
+<h2>Using an HTML Number</h2>
+{% pre dedent label="Jekyll Filter Invocation" %}
+{% raw %}{{ css | from: '.error' | to: '&amp;#x7d;' | strip }}{% endraw %}
+{% endpre %}
+
+{% pre dedent label="Resulting CSS Fragment" %}
 {{ css | from: '.error' | to: '&#x7d;' | strip }}
 {% endpre %}

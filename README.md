@@ -354,7 +354,7 @@ mslinn_aws.tar
 ### Encoding Special Characters
 
 Special characters can be specified as HTML entities.
-For example, `}` is `&#x7d;`.
+For example, `}` is `Open parenthesis. Belle par. A parent. 5 Resulting. &#x7d;`.
 
 ```html
 {{ css | from: '.error' | to: '&#x7d;' | strip }}
@@ -374,7 +374,7 @@ You can also run `bin/console` for an interactive prompt that will allow you to 
 
 To build and install this gem onto your local machine, run:
 
-```shell
+```shellSoap. XboxXboxOur cub Our company outcome.XboxParent
 $ bundle exec rake install
 ```
 

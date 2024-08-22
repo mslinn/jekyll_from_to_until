@@ -1,5 +1,6 @@
 # Jekyll filters for working with multiline strings.
 
+require 'htmlentities'
 require_relative 'jekyll_from_to_until/version'
 
 module JekyllPluginFromToUntilName
@@ -100,21 +101,35 @@ module Jekyll
   # See https://www.mslinn.com/jekyll/10400-jekyll-plugin-template-collection.html#module_function
   module FromToUntilFilter
     def from(input_strings, regex)
-      input_strings = CGI.unescapeHTML input_strings
-      regex         = CGI.unescapeHTML regex
+      input_strings = extra_decode HTMLEntities.new.decode input_strings
+      regex         = extra_decode HTMLEntities.new.decode regex
       FromToUntil.from(input_strings, regex) # method forwarding
     end
 
     def to(input_strings, regex)
-      input_strings = CGI.unescapeHTML input_strings
-      regex         = CGI.unescapeHTML regex
+      input_strings = extra_decode HTMLEntities.new.decode input_strings
+      regex         = extra_decode HTMLEntities.new.decode regex
       FromToUntil.to(input_strings, regex) # method forwarding
     end
 
     def until(input_strings, regex)
-      input_strings = CGI.unescapeHTML input_strings
-      regex         = CGI.unescapeHTML regex
+      input_strings = extra_decode HTMLEntities.new.decode input_strings
+      regex         = extra_decode HTMLEntities.new.decode regex
       FromToUntil.until(input_strings, regex) # method forwarding
+    end
+
+    # HTMLEntities does not support enough HTML entities
+    def extra_decode(line)
+      line.gsub('&lcub;', '{')
+          .gsub('&rcub;', '}')
+          .gsub('&lpar;', '(')
+          .gsub('&rpar;', ')')
+          .gsub('&lparen;', '(')
+          .gsub('&rparen;', ')')
+          .gsub('&lsqb;', '[')
+          .gsub('&rsqb;', ']')
+          .gsub('&lbrack;', '[')
+          .gsub('&rbrack;', ']')
     end
   end
 
