@@ -7,9 +7,10 @@ title: Problem
   This was not working on
   {% href label='<code>mslinn.com/jekyll_plugins/jekyll_pre.html#comprehensive_example</code>'
             url='https://mslinn.com/jekyll_plugins/jekyll_pre.html#comprehensive_example' %}.
+  The solution I chose was to allow special characters to be specified as HTML entities.
+  For example, <code>'}'</code> is <code>'&amp;#x7d;'</code>.
 </p>
 {% capture css %}{% flexible_include '$msp/_sass/jekyll_pre.scss' %}{% endcapture %}
 {% pre copyButton dedent label="CSS Fragment" %}
-{{ css | from: '.error' | to: '\&rcub;' | strip }}<br>
-{{ css | from: '.pre_tag' | to: '\&rcub;' | strip }}
+{{ css | from: '.error' | to: '&#x7d;' | strip }}
 {% endpre %}

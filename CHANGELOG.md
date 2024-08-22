@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.0.5 / 2024-08-22
+
+* Fixed method forwarding
+* Regexes are now subjected to an HTML unescape, so special characters are now supported,
+  such as the right closing squiggly bracket:
+
+   ```html
+   {{ css | from: '.error' | to: '&#x7d;' | strip }}
+   ```
+
+
 ## 1.0.4 / 2023-11-18
 
 * Now callable from any Ruby program

@@ -167,7 +167,9 @@ mslinn_aws.tar
 
 ### From the third line of string
 
-These examples return the lines of the file from the beginning of the until a line with the string "3" is found, including the matched line. The only difference between the examples is the delimiter around the regular expression.
+These examples return the lines of the file from the beginning of the until a line with the string "3" is found,
+including the matched line.
+The only difference between the examples is the delimiter around the regular expression.
 
 ```html
 {{ lines | from: '3' }}
@@ -204,7 +206,9 @@ mslinn_aws.tar
 
 ### To the third line of string
 
-These examples return the lines of the file from the first line until a line with the string `"3"` is found, including the matched line. The only difference between the examples is the delimiter around the regular expression.
+These examples return the lines of the file from the first line until a line with the string `"3"` is found,
+including the matched line.
+The only difference between the examples is the delimiter around the regular expression.
 
 ```html
 {{ lines | to: '3' }}
@@ -245,7 +249,8 @@ target/
 
 ### Until the third line of string
 
-These examples return the lines of the file until a line with the string `"3"` is found, excluding the matched line. The only difference between the examples is the delimiter around the regular expression.
+These examples return the lines of the file until a line with the string `"3"` is found, excluding the matched line.
+The only difference between the examples is the delimiter around the regular expression.
 
 ```html
 {{ lines | until: '3' }}
@@ -284,7 +289,8 @@ target/
 
 ### From the string "2" until the string "4"
 
-These examples return the lines of the file until a line with the string `"3"` is found, excluding the matched line. The only difference between the examples is the delimiter around the regular expression.
+These examples return the lines of the file until a line with the string `"3"` is found, excluding the matched line.
+The only difference between the examples is the delimiter around the regular expression.
 
 ```html
 {{ lines | from: '2' | until: '4' }}
@@ -302,7 +308,9 @@ line 3
 
 ### From Line In a File Containing 'idea' Until no match
 
-The `.gitignore` file does not contain the string `xx`. If we attempt to match against that string the remainder of the file is returned for the to and until filter, and the empty string is returned for the from filter.
+The `.gitignore` file does not contain the string `xx`.
+If we attempt to match against that string the remainder of the file is returned for the to and until filter,
+and the empty string is returned for the from filter.
 
 ```html
 {{ gitignore | from: 'PID' | until: 'xx' }}
@@ -335,6 +343,16 @@ The above generates:
 cloud9.tar
 cloud9.zip
 mslinn_aws.tar
+```
+
+
+### Encoding Special Characters
+
+Special characters can be specified as HTML entities.
+For example, `}` is `&#x7d;`.
+
+```html
+{{ css | from: '.error' | to: '&#x7d;' | strip }}
 ```
 
 
