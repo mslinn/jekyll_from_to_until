@@ -100,7 +100,13 @@ All of these examples perform identically.
 {{ sourceOfLines | until: regex }}
 ```
 
-:warning: Important: the name of the filter must be followed by a colon (&colon;). If you fail to do that an error will be generated and the Jekyll site building process will halt. The error message looks something like this: `Liquid Warning: Liquid syntax error (line 285): Expected end_of_string but found string in "{{ lines | from '2' | until: '4' | xml_escape }}" in /some_directory/some_files.html Liquid Exception: Liquid error (line 285): wrong number of arguments (given 1, expected 2) in /some_directory/some_file.html Error: Liquid error (line 285): wrong number of arguments (given 1, expected 2)`
+:warning: Important: the name of the filter must be followed by a colon (&colon;).
+If you fail to do that an error will be generated and the Jekyll site building process will halt.
+The error message looks something like this:
+`Liquid Warning: Liquid syntax error (line 285): Expected end_of_string but found string in
+"{{ lines | from '2' | until: '4' | xml_escape }}" in /some_directory/some_files.html Liquid Exception:
+Liquid error (line 285): wrong number of arguments (given 1, expected 2) in /some_directory/some_file.
+html Error: Liquid error (line 285): wrong number of arguments (given 1, expected 2)`
 
 
 ## Jekyll Usage
@@ -309,8 +315,7 @@ line 3
 ### From Line In a File Containing 'idea' Until no match
 
 The `.gitignore` file does not contain the string `xx`.
-If we attempt to match against that string the remainder of the file is returned for the to and until filter,
-and the empty string is returned for the from filter.
+If we attempt to match against that string the remainder of the file is returned for the to and until filter.
 
 ```html
 {{ gitignore | from: 'PID' | until: 'xx' }}
@@ -354,6 +359,8 @@ For example, `}` is `&#x7d;`.
 ```html
 {{ css | from: '.error' | to: '&#x7d;' | strip }}
 ```
+
+`demo/special.html` demonstrates this.
 
 
 ## Development
