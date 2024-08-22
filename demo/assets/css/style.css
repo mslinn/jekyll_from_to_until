@@ -170,7 +170,7 @@ pre {
 }
 
 .unselectable {
-  color: #7922f9;
+  color: #e2ceff;
   -moz-user-select: none;
   -khtml-user-select: none;
   user-select: none;

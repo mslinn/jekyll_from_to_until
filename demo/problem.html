@@ -1,0 +1,15 @@
+---
+description: Jekyll from/to/until plugin problem debug
+layout: default
+title: Problem
+---
+<p>
+  This was not working on
+  {% href label='<code>mslinn.com/jekyll_plugins/jekyll_pre.html#comprehensive_example</code>'
+            url='https://mslinn.com/jekyll_plugins/jekyll_pre.html#comprehensive_example' %}.
+</p>
+{% capture css %}{% flexible_include '$msp/_sass/jekyll_pre.scss' %}{% endcapture %}
+{% pre copyButton dedent label="CSS Fragment" %}
+{{ css | from: '.error' | to: '\&rcub;' | strip }}<br>
+{{ css | from: '.pre_tag' | to: '\&rcub;' | strip }}
+{% endpre %}
