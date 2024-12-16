@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.0.6 / 2024-12-16
+
+* Fixed callability issue
+
+
 ## 1.0.5 / 2024-08-22
 
 * Fixed method forwarding
